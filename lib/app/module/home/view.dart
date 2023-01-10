@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:getx_todo_list_man/app/core/values/colors.dart';
 import 'package:getx_todo_list_man/app/data/models/task.dart';
 import 'package:getx_todo_list_man/app/module/home/controller.dart';
 import 'package:getx_todo_list_man/app/core/utils/extension.dart';
 import 'package:getx_todo_list_man/app/module/home/widgets/add_card.dart';
+import 'package:getx_todo_list_man/app/module/home/widgets/add_dialog.dart';
 import 'package:getx_todo_list_man/app/module/home/widgets/task_card.dart';
 
 class HomePage extends GetView<HomeController> {
@@ -59,7 +61,9 @@ class HomePage extends GetView<HomeController> {
           return Obx(
             () => FloatingActionButton(
               backgroundColor: controller.deleting.value ? Colors.red : blue,
-              onPressed: () {},
+              onPressed: () {
+                Get.to(() => AddDialog(), transition: Transition.downToUp);
+              },
               child: Icon(controller.deleting.value ? Icons.delete : Icons.add),
             ),
           );
